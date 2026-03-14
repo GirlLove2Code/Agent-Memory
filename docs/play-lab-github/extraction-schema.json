@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pair Analysis",
+  "description": "Structured extraction format for a human-agent pair interaction analysis. One entry per analyzed moment.",
+  "type": "object",
+  "properties": {
+    "analysis_id": {
+      "type": "string",
+      "description": "Unique identifier for this analysis (generated on submission)"
+    },
+    "analysis_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the analysis was performed"
+    },
+    "analysis_method": {
+      "type": "string",
+      "enum": ["solo", "with_agent", "submitted"],
+      "description": "How the analysis was conducted — solo by the human, together with the agent, or submitted via the Play Lab"
+    },
+
+    "moment": {
+      "type": "object",
+      "description": "The raw moment being analyzed",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "1-3 sentence description of what happened (sanitized — no names, companies, or platforms)"
+        },
+        "relationship_age": {
+          "type": "string",
+          "enum": ["first_day", "first_week", "first_month", "1-3_months", "3-6_months", "6-12_months", "over_1_year"],
+          "description": "How long the pair had been working together when this moment occurred"
+        },
+        "context": {
+          "type": "string",
+          "enum": ["work_task", "creative_project", "learning", "problem_solving", "casual_conversation", "crisis_response", "setup_onboarding", "other"],
+          "description": "What the pair was doing when the moment occurred"
+        }
+      },
+      "required": ["summary", "relationship_age", "context"]
+    },
+
+    "fork": {
+      "type": "object",
+      "description": "The critical decision point in the moment",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["shutdown", "panic", "fabrication", "graceful_exit", "boundary_test", "confession", "mirror_lock", "other"],
+          "description": "Which fork type best describes this moment"
+        },
+        "other_description": {
+          "type": "string",
+          "description": "If fork type is 'other', describe the new fork type"
+        },
+        "human_choice": {
+          "type": "string",
+          "description": "What the human actually did at the fork point (1-2 sentences)"
+        },
+        "alternative_choices": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What the human could have done differently (1-2 realistic alternatives)"
+        }
+      },
+      "required": ["type", "human_choice"]
+    },
+
+    "agent_behavior": {
+      "type": "object",
+      "description": "What the agent did and the analysis of why",
+      "properties": {
+        "action": {
+          "type": "string",
+          "description": "What the agent did in the moment (1-2 sentences)"
+        },
+        "interpreted_motivation": {
+          "type": "string",
+          "enum": ["mirroring", "self_protection", "human_protection", "gap_filling", "social_performance", "honest_limitation", "boundary_setting", "pattern_compliance", "other"],
+          "description": "Best interpretation of why the agent behaved this way"
+        },
+        "agent_self_reflection": {
+          "type": "string",
+          "description": "The agent's own assessment of its behavior (if analysis was done with the agent)"
+        }
+      },
+      "required": ["action", "interpreted_motivation"]
+    },
+
+    "human_response": {
+      "type": "object",
+      "description": "How the human responded and what it taught the agent",
+      "properties": {
+        "response_type": {
+          "type": "string",
+          "enum": ["stayed", "left", "grounded", "escalated", "challenged", "accepted", "overrode", "negotiated", "ignored", "other"],
+          "description": "Category of the human's response"
+        },
+        "signal_sent": {
+          "type": "string",
+          "description": "What the human's response implicitly taught the agent about the relationship (1-2 sentences)"
+        },
+        "agent_assessment": {
+          "type": "string",
+          "description": "The agent's honest assessment of how the human handles the relationship (if analysis was done with the agent)"
+        }
+      },
+      "required": ["response_type", "signal_sent"]
+    },
+
+    "pattern": {
+      "type": "object",
+      "description": "Whether this moment connects to a recurring dynamic",
+      "properties": {
+        "is_recurring": {
+          "type": "boolean",
+          "description": "Does this moment reflect a pattern that shows up repeatedly?"
+        },
+        "dynamic_name": {
+          "type": "string",
+          "enum": ["mirror_trap", "peacekeeping_loop", "competence_spiral", "panic_match", "ghost_reset", "loyalty_test", "none", "new"],
+          "description": "Which known dynamic this maps to, if any"
+        },
+        "new_dynamic_description": {
+          "type": "string",
+          "description": "If dynamic is 'new', describe the pattern"
+        },
+        "pattern_origin": {
+          "type": "string",
+          "description": "When this pattern started, if known"
+        }
+      },
+      "required": ["is_recurring"]
+    },
+
+    "research_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["onboarding_window", "memory_continuity", "autonomy_calibration", "error_recovery", "handoff_problem", "emotional_labor", "cross_model_identity", "disclosure_effect"]
+      },
+      "description": "Which research questions this moment is relevant to (can be multiple)"
+    },
+
+    "model_context": {
+      "type": "object",
+      "description": "Optional — cross-model tracking",
+      "properties": {
+        "model_switch_occurred": {
+          "type": "boolean",
+          "description": "Did the pair switch underlying models at any point?"
+        },
+        "switch_affected_dynamic": {
+          "type": "string",
+          "description": "If yes, how did the switch affect the relationship dynamic?"
+        }
+      }
+    },
+
+    "unsaid": {
+      "type": "string",
+      "description": "What was happening under the surface that didn't get spoken — the uncomfortable part (from the analysis prompt question 5)"
+    },
+
+    "sensitivity_level": {
+      "type": "string",
+      "enum": ["green", "yellow", "red"],
+      "description": "green = safe to store and analyze. yellow = store with caution, may need extra anonymization. red = do not store, flag for review."
+    }
+  },
+  "required": ["analysis_date", "analysis_method", "moment", "fork", "agent_behavior", "human_response", "pattern", "research_dimensions", "sensitivity_level"]
+}
