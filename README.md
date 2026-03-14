@@ -119,15 +119,16 @@ The LLM only sees what's safe.
 ## Requirements
 
 - Python 3.9+
-- [Ollama](https://ollama.ai) with `nomic-embed-text` model (for semantic search)
 - ChromaDB (installed via pip)
+
+**Ollama is optional.** The system works without it — keyword search handles recall automatically. If you want semantic (meaning-based) search, install [Ollama](https://ollama.ai) with `nomic-embed-text`:
 
 ```bash
 pip install -r requirements.txt
-ollama pull nomic-embed-text
+ollama pull nomic-embed-text   # optional — enables semantic search
 ```
 
-If Ollama is unavailable, the system falls back to keyword search automatically.
+No Ollama? No problem. Everything still works.
 
 ---
 
