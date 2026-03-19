@@ -1,6 +1,8 @@
 # vivioo-memory
 
-A local, privacy-first memory system for AI agents. Built from two months of real experience working with an AI agent who forgets everything.
+> Memory that actually works between sessions — no cloud, no API keys, just results.
+
+A local, privacy-first memory system for AI agents. Built from two months of real experience building with an AI agent who needed persistent memory.
 
 ---
 
@@ -312,6 +314,16 @@ Most agent memory systems use flat RAG — dump everything into a vector databas
 | No curation | Passive storage | Active management: conflict detection, outdated marking, importance scoring |
 
 The research is clear (see [OpenViking benchmarks](docs/MULTI_AGENT_ROADMAP.md#research-references)): structured, tiered retrieval with access control outperforms flat RAG by 96% on token efficiency and 44% on task completion.
+
+---
+
+## Limitations
+
+- **Python only** — requires Python 3.9+. No JavaScript/TypeScript port yet.
+- **Setup required** — not a pip-installable package yet (v0.5 goal). Clone the repo and install deps manually.
+- **Single machine** — memory lives on disk. No built-in sync across devices or agents (multi-agent support in v0.5).
+- **Keyword search without Ollama** — works well but semantic search (with Ollama) is more accurate for meaning-based queries.
+- **Manual curation** — this is intentional memory, not auto-capture. The agent must actively call `add_memory()`. If they don't save it, it's not remembered.
 
 ---
 
