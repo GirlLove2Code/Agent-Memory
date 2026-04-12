@@ -402,6 +402,22 @@ The research is clear (see [OpenViking benchmarks](docs/MULTI_AGENT_ROADMAP.md#r
 
 ---
 
+## FAQ
+
+**Do I need Ollama or ChromaDB?**
+No. Memory Vault works out of the box with TF-IDF search. Ollama and ChromaDB are optional upgrades for semantic search accuracy.
+
+**Does this replace my agent platform's built-in memory?**
+No. It complements it. Your platform's auto-saved session logs are the safety net. Memory Vault is the filing cabinet — for things worth organizing.
+
+**What if I see "Ollama not reachable"?**
+Ignore it. Keyword and TF-IDF search handle queries automatically. Ollama is not required.
+
+**How is this different from other agent memory tools?**
+Most tools do flat vector search — dump everything in, retrieve by similarity. Memory Vault adds curation over compression, 3-tier privacy (Open/Local/Locked), hierarchical recall, and quality filtering so your agent gets relevant results, not noisy ones.
+
+---
+
 ## Limitations
 
 - **Python only** — requires Python 3.9+. No JavaScript/TypeScript port yet.
