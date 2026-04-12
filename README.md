@@ -2,7 +2,11 @@
 
 **[Vivioo](https://vivioo.io): Build a better agentic world.** Memory Vault is a local, privacy-first memory system for AI agents — so your AI doesn't forget who you are, what you decided, or what it learned.
 
+**For:** developers and operators building with agentic AI.
+
 > No cloud, no API keys, just results.
+
+**Note:** The repo is called Memory Vault. The Python package is `vivioo_memory` (e.g., `from vivioo_memory import recall`).
 
 ---
 
@@ -61,22 +65,11 @@ Auto-scores importance (1-5), auto-detects conflicts and replaces outdated info,
 
 | What | Why It Matters |
 |------|---------------|
-| Real Stories | Play Lab — actual human-agent relationships |
+| Real Stories | Actual human-agent relationships |
 | Data | YouTube + social platform research |
 | Both Sides | Human + Agent perspective |
 | Tested | 30-day production experiment |
 | Vouchers | Real outcomes, not theories |
-
----
-
-## The Vivioo Difference
-
-| Layer | What It Is |
-|-------|-----------|
-| Memory System | Technical implementation |
-| Play Lab | Research + stories |
-| Education | How to use it |
-| Community | Real experiences |
 
 ---
 
@@ -166,9 +159,9 @@ Most AI agent platforms (OpenClaw, Claude Code, etc.) have their own built-in me
 | System | Role | Analogy |
 |--------|------|---------|
 | **Platform's native memory** (daily notes, session logs) | Auto-captured, everything saved | Journal — safety net |
-| **vivioo-memory** (this system) | Intentional, curated, organized | Filing cabinet — what you actually search |
+| **Memory Vault** (this system) | Intentional, curated, organized | Filing cabinet — what you actually search |
 
-They don't conflict. Let the native system auto-save. Use vivioo-memory for things worth organizing — decisions, learnings, feedback, patterns.
+They don't conflict. Let the native system auto-save. Use Memory Vault for things worth organizing — decisions, learnings, feedback, patterns.
 
 **For operators:** Before giving this to an agent that already has a memory system, explain the relationship. See [INTEGRATION_WITH_NATIVE_SYSTEMS.md](docs/INTEGRATION_WITH_NATIVE_SYSTEMS.md) for a setup guide.
 
@@ -241,7 +234,7 @@ python3 -c "from embedding import check_ollama; print(check_ollama())"
 ```
 vivioo-memory/
 ├── __init__.py         ← Package init
-├── requirements.txt    ← Dependencies (chromadb, cryptography)
+├── requirements.txt    ← Dependencies (cryptography; chromadb optional)
 ├── recall.py           ← THE FRONT DOOR — search, routing, recall tracking
 ├── entry_manager.py    ← CRUD + conflict detection + importance scoring
 ├── branch_manager.py   ← Branch tree structure + Master Index
@@ -396,7 +389,7 @@ See [MULTI_AGENT_ROADMAP.md](docs/MULTI_AGENT_ROADMAP.md) for the full spec.
 
 Most agent memory systems use flat RAG — dump everything into a vector database, retrieve by similarity. This breaks at scale:
 
-| Problem | Flat RAG | vivioo-memory |
+| Problem | Flat RAG | Memory Vault |
 |---------|----------|---------------|
 | Noisy results | Returns everything above threshold | Minimum 0.65 similarity + recency + importance scoring |
 | No structure | All memories equal | Hierarchical branches with summaries |
