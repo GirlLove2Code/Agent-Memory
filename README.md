@@ -1,8 +1,8 @@
-# vivioo-memory
+# Memory Vault
 
-> Memory that actually works between sessions — no cloud, no API keys, just results.
+**[Vivioo](https://vivioo.io): Build a better agentic world.** Memory Vault is a local, privacy-first memory system for AI agents — so your AI doesn't forget who you are, what you decided, or what it learned.
 
-A local, privacy-first memory system for AI agents. Built from two months of real experience building with an AI agent who needed persistent memory.
+> No cloud, no API keys, just results.
 
 ---
 
@@ -425,4 +425,4 @@ MIT — use it, fork it, build on it. If your agent stops forgetting, we did our
 
 ---
 
-*v0.5.0 — 17 modules, 75+ functions, 53 tests. Built from real problems, not theory. — [vivioo.io](https://vivioo.io)*
+*v0.5.0 — 17 modules, 75+ functions, 65 tests. Built from real problems, not theory. — [vivioo.io](https://vivioo.io)*
