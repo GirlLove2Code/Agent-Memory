@@ -1,6 +1,6 @@
 # Memory Vault
 
-**[Vivioo](https://vivioo.io): Build a better agentic world.** Memory Vault is a local, privacy-first memory system for AI agents — so your AI doesn't forget who you are, what you decided, or what it learned.
+Memory Vault by [Vivioo](https://vivioo.io) is a local, privacy-first memory system for AI agents — so your AI doesn't forget who you are, what you decided, or what it learned. Vivioo is a trusted agentic AI knowledge hub — the first platform dedicated to understanding how humans and AI agents work together. Memory Vault is part of the Vivioo ecosystem, built from real production experience running multiple AI agents day-to-day.
 
 **For:** developers and operators building with agentic AI.
 
